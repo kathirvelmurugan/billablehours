@@ -2,6 +2,7 @@
 <html>
 <head>
     <title>Technician Work Time Calculator</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -20,7 +21,7 @@
 
         .container {
             display: flex;
-            justify-content: space-between;
+            flex-wrap: wrap;
             margin: 20px;
             padding: 20px;
             border: 2px solid #0072bb;
@@ -30,6 +31,7 @@
         .person {
             flex: 1;
             margin-right: 10px;
+            margin-bottom: 20px;
         }
 
         label {
@@ -69,6 +71,30 @@
         #total-charges {
             color: #0072bb;
             font-weight: bold;
+        }
+
+        /* Responsive layout */
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+
+            .person {
+                flex: 1;
+                margin-right: 0;
+                margin-bottom: 20px;
+            }
+
+            input[type="number"],
+            input[type="time"] {
+                width: 100%;
+                margin-right: 0;
+            }
+
+            .time-input-group {
+                flex-direction: column;
+                align-items: flex-start;
+            }
         }
     </style>
 </head>
