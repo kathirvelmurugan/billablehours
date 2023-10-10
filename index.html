@@ -70,52 +70,107 @@
 <body>
     <h1>Technician Work Time Calculator</h1>
 
+    <!-- Base Travel Duration -->
+    <label for="base-travel-duration" style="color: #0072bb;">Base Travel Duration (minutes):</label>
+    <input type="number" id="base-travel-duration" min="0" value="0">
+
     <div class="container">
         <!-- Person 1 -->
         <div class="person">
             <h2>Person 1</h2>
-            <label for="start-time-1">Start Time:</label>
-            <input type="time" id="start-time-1">
-            <label for="end-time-1">End Time:</label>
-            <input type="time" id="end-time-1">
+            <label for="in-time-1">In Time:</label>
+            <input type="time" id="in-time-1">
+            <label for="out-time-1">Out Time:</label>
+            <input type="time" id="out-time-1">
             <button onclick="calculateWorkingTime(1)">Add Time</button>
-            <p>Total working minutes on client site: <span id="total-minutes-1">0</span> minutes</p>
+            <p>Total working minutes for the client: <span id="total-minutes-1">0</span> minutes</p>
+            <p>Total cost for Person 1: ₹<span id="total-cost-1">0.00</span></p>
         </div>
 
         <!-- Person 2 -->
         <div class="person">
             <h2>Person 2</h2>
-            <label for="start-time-2">Start Time:</label>
-            <input type="time" id="start-time-2">
-            <label for="end-time-2">End Time:</label>
-            <input type="time" id="end-time-2">
+            <label for="in-time-2">In Time:</label>
+            <input type="time" id="in-time-2">
+            <label for="out-time-2">Out Time:</label>
+            <input type="time" id="out-time-2">
             <button onclick="calculateWorkingTime(2)">Add Time</button>
-            <p>Total working minutes on client site: <span id="total-minutes-2">0</span> minutes</p>
+            <p>Total working minutes for the client: <span id="total-minutes-2">0</span> minutes</p>
+            <p>Total cost for Person 2: ₹<span id="total-cost-2">0.00</span></p>
         </div>
 
         <!-- Person 3 -->
         <div class="person">
             <h2>Person 3</h2>
-            <label for="start-time-3">Start Time:</label>
-            <input type="time" id="start-time-3">
-            <label for="end-time-3">End Time:</label>
-            <input type="time" id="end-time-3">
+            <label for="in-time-3">In Time:</label>
+            <input type="time" id="in-time-3">
+            <label for="out-time-3">Out Time:</label>
+            <input type="time" id="out-time-3">
             <button onclick="calculateWorkingTime(3)">Add Time</button>
-            <p>Total working minutes on client site: <span id="total-minutes-3">0</span> minutes</p>
+            <p>Total working minutes for the client: <span id="total-minutes-3">0</span> minutes</p>
+            <p>Total cost for Person 3: ₹<span id="total-cost-3">0.00</span></p>
+        </div>
+
+        <!-- Person 4 -->
+        <div class="person">
+            <h2>Person 4</h2>
+            <label for="in-time-4">In Time:</label>
+            <input type="time" id="in-time-4">
+            <label for="out-time-4">Out Time:</label>
+            <input type="time" id="out-time-4">
+            <button onclick="calculateWorkingTime(4)">Add Time</button>
+            <p>Total working minutes for the client: <span id="total-minutes-4">0</span> minutes</p>
+            <p>Total cost for Person 4: ₹<span id="total-cost-4">0.00</span></p>
         </div>
     </div>
 
     <!-- Total Working Minutes for All Persons -->
-    <h2>Total Working Minutes for All Persons:</h2>
-    <p>Total working minutes on client site: <span id="total-minutes-all">0</span> minutes</p>
+    <h2>Total Billable Working Minutes:</h2>
+    <p>Total working minutes for the client: <span id="total-minutes-all">0</span> minutes</p>
 
     <!-- Total Charges to Pay -->
     <h2>Total Charges to Pay:</h2>
-    <p>Total charges to pay: <span id="total-charges">0.00</span></p>
+    <p>Total charges to pay: ₹<span id="total-charges">0.00</span></p>
 
     <script>
         function calculateWorkingTime(personNumber) {
-            // ... (Your existing JavaScript code for calculation)
+            const inTimeInput = document.getElementById(`in-time-${personNumber}`);
+            const outTimeInput = document.getElementById(`out-time-${personNumber}`);
+            const totalMinutesDisplay = document.getElementById(`total-minutes-${personNumber}`);
+            const totalCostDisplay = document.getElementById(`total-cost-${personNumber}`);
+            const totalMinutesAllDisplay = document.getElementById('total-minutes-all');
+            const totalChargesDisplay = document.getElementById('total-charges');
+            const baseTravelDurationInput = document.getElementById('base-travel-duration');
+
+            const inTime = new Date(`2000-01-01T${inTimeInput.value}:00`);
+            const outTime = new Date(`2000-01-01T${outTimeInput.value}:00`);
+            const baseTravelDuration = parseInt(baseTravelDurationInput.value);
+
+            const timeDifference = outTime - inTime;
+
+            if (isNaN(timeDifference) || timeDifference < 0) {
+                alert('Invalid time entries. Out time must be after in time.');
+                return;
+            }
+
+            const minutesWorked = Math.round(timeDifference / (1000 * 60)); // Convert milliseconds to minutes
+
+            const totalMinutes = minutesWorked + baseTravelDuration;
+            const currentTotalMinutes = parseInt(totalMinutesDisplay.textContent);
+            totalMinutesDisplay.textContent = currentTotalMinutes + totalMinutes;
+
+            // Calculate and display total cost for the person
+            const rate = 6; // The rate per minute
+            const totalCost = (totalMinutes) * rate; // Calculate cost based on total minutes worked
+            totalCostDisplay.textContent = totalCost.toFixed(2);
+
+            // Update the total minutes for all persons
+            const totalMinutesAll = parseFloat(totalMinutesAllDisplay.textContent) + totalMinutes;
+            totalMinutesAllDisplay.textContent = totalMinutesAll;
+
+            // Calculate and display total charges to pay
+            const totalCharges = totalMinutesAll * rate; // Convert total minutes to hours and apply rate
+            totalChargesDisplay.textContent = totalCharges.toFixed(2);
         }
     </script>
 </body>
