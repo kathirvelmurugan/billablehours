@@ -44,6 +44,11 @@
             margin-right: 10px;
         }
 
+        .time-input-group {
+            display: flex;
+            align-items: center;
+        }
+
         button {
             background-color: #0072bb;
             color: white;
@@ -78,10 +83,16 @@
         <!-- Person 1 -->
         <div class="person">
             <h2>Person 1</h2>
-            <label for="in-time-1">In Time:</label>
-            <input type="time" id="in-time-1">
-            <label for="out-time-1">Out Time:</label>
-            <input type="time" id="out-time-1">
+            <div class="time-input-group">
+                <div>
+                    <label for="in-time-1">In Time:</label>
+                    <input type="time" id="in-time-1">
+                </div>
+                <div>
+                    <label for="out-time-1">Out Time:</label>
+                    <input type="time" id="out-time-1">
+                </div>
+            </div>
             <button onclick="calculateWorkingTime(1)">Add Time</button>
             <p>Total working minutes for the client: <span id="total-minutes-1">0</span> minutes</p>
             <p>Total cost for Person 1: ₹<span id="total-cost-1">0.00</span></p>
@@ -90,10 +101,16 @@
         <!-- Person 2 -->
         <div class="person">
             <h2>Person 2</h2>
-            <label for="in-time-2">In Time:</label>
-            <input type="time" id="in-time-2">
-            <label for="out-time-2">Out Time:</label>
-            <input type="time" id="out-time-2">
+            <div class="time-input-group">
+                <div>
+                    <label for="in-time-2">In Time:</label>
+                    <input type="time" id="in-time-2">
+                </div>
+                <div>
+                    <label for="out-time-2">Out Time:</label>
+                    <input type="time" id="out-time-2">
+                </div>
+            </div>
             <button onclick="calculateWorkingTime(2)">Add Time</button>
             <p>Total working minutes for the client: <span id="total-minutes-2">0</span> minutes</p>
             <p>Total cost for Person 2: ₹<span id="total-cost-2">0.00</span></p>
@@ -102,10 +119,16 @@
         <!-- Person 3 -->
         <div class="person">
             <h2>Person 3</h2>
-            <label for="in-time-3">In Time:</label>
-            <input type="time" id="in-time-3">
-            <label for="out-time-3">Out Time:</label>
-            <input type="time" id="out-time-3">
+            <div class="time-input-group">
+                <div>
+                    <label for="in-time-3">In Time:</label>
+                    <input type="time" id="in-time-3">
+                </div>
+                <div>
+                    <label for="out-time-3">Out Time:</label>
+                    <input type="time" id="out-time-3">
+                </div>
+            </div>
             <button onclick="calculateWorkingTime(3)">Add Time</button>
             <p>Total working minutes for the client: <span id="total-minutes-3">0</span> minutes</p>
             <p>Total cost for Person 3: ₹<span id="total-cost-3">0.00</span></p>
@@ -114,10 +137,16 @@
         <!-- Person 4 -->
         <div class="person">
             <h2>Person 4</h2>
-            <label for="in-time-4">In Time:</label>
-            <input type="time" id="in-time-4">
-            <label for="out-time-4">Out Time:</label>
-            <input type="time" id="out-time-4">
+            <div class="time-input-group">
+                <div>
+                    <label for="in-time-4">In Time:</label>
+                    <input type="time" id="in-time-4">
+                </div>
+                <div>
+                    <label for="out-time-4">Out Time:</label>
+                    <input type="time" id="out-time-4">
+                </div>
+            </div>
             <button onclick="calculateWorkingTime(4)">Add Time</button>
             <p>Total working minutes for the client: <span id="total-minutes-4">0</span> minutes</p>
             <p>Total cost for Person 4: ₹<span id="total-cost-4">0.00</span></p>
